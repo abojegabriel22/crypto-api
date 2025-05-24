@@ -35,6 +35,19 @@ app.post("/api/wallets", async (req, res) => {
   }
 });
 
+// get all wallet address /api/address 
+app.get("/api/address", async (req, res) => {
+  let query = {}
+  try{
+    const response = await WalletModel.find()
+    res.json(response)
+  }catch(error){
+    res.status(500).json({error: "Internal server error"})
+    console.error("Error fetching data:", error)
+  }
+
+})
+
 app.listen(port, async () => {
   await dbConnect();
   console.log(`Server is running on port ${port}`);
