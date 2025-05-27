@@ -14,9 +14,9 @@ const dbConnect = async () => {
                 useUnifiedTopology: true 
             }
         );
-        console.log("Database connection successfully done");
+        // console.log("Database connection successfully done");
     } catch (error) {
-        console.error("Error connecting to Mongoose:", error.message);
+        // console.error("Error connecting to Mongoose:", error.message);
         process.exit(1);
     }
 };
