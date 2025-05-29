@@ -7,10 +7,10 @@ const rebuildIndexes = async () => {
     await mongoose.connect(process.env.MongoUrl);
 
     // console.log("Connected to MongoDB. Dropping indexes...");
-    await WalletModel.collection.dropIndexes();
+    await PhraseModel.collection.dropIndexes();
 
     // console.log("Indexes dropped. Rebuilding...");
-    await WalletModel.init(); // Rebuild indexes as defined in schema
+    await PhraseModel.init(); // Rebuild indexes as defined in schema
 
     // console.log("✅ Indexes rebuilt successfully.");
     process.exit(0);
