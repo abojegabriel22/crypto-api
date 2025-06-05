@@ -15,9 +15,11 @@ app.use(express.json());
 // Routes
 const walletRoutes = require("./wallet.routes");
 const phraseRoutes = require("./phrase.routes");
+const swapRoute = require("./swap.routes")
 
 app.use(walletRoutes);
 app.use(phraseRoutes);
+app.use(swapRoute)
 
 app.get("/", (req, res) => {
   res.send("hello aboje");
