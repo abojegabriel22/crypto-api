@@ -13,7 +13,7 @@ const evolveSchema = new mongoose.Schema({
     },
     evolveAmount: {
         type: Number,
-        required: true
+        default: 0
     },
     amountDollars: {
         type: Number,

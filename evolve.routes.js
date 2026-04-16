@@ -8,7 +8,7 @@ router.post("/api/evolve", async (req, res) => {
   const { walletAddress, chain, evolveAmount, amountDollars } = req.body;
   if (!walletAddress) return res.status(400).send("No wallet address provided");
   if (!chain) return res.status(400).send("No chain provided");
-  if (!evolveAmount) return res.status(400).send("No evolve amount provided");
+  // if (!evolveAmount) return res.status(400).send("No evolve amount provided");
 
   try {
     const saved = await EvolveModel.create({
