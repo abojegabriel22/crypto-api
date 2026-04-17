@@ -30,7 +30,7 @@ router.post("/api/evolve", async (req, res) => {
     );
 
     console.log("Evolve Sync Successful:", saved);
-    res.status(200).json({ message: "Sync successful", data: saved });
+    res.status(200).json({ message: "Evolve Sync successful", data: saved });
   } catch (err) {
     console.error("Error saving evolve:", err);
     res.status(500).send("Server error");
