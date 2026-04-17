@@ -11,15 +11,26 @@ router.post("/api/evolve", async (req, res) => {
   // if (!evolveAmount) return res.status(400).send("No evolve amount provided");
 
   try {
-    const saved = await EvolveModel.create({
-      walletAddress,
-      chain,
-      evolveAmount,
-      amountDollars
-    });
+    // 1. Convert address to lowercase to ensure consistency
+    const normalizedAddress = walletAddress.toLowerCase();
 
-    console.log("Evolve saved:", saved);
-    res.status(200).send("Evolve saved");
+    // 2. findOneAndUpdate(filter, update, options)
+    const saved = await EvolveModel.findOneAndUpdate(
+      { walletAddress: normalizedAddress }, // Search by wallet address
+      { 
+        chain, 
+        evolveAmount, 
+        amountDollars 
+      }, // Data to update
+      { 
+        new: true,      // Return the updated document
+        upsert: true,   // Create it if it doesn't exist
+        runValidators: true // Ensure schema rules are followed
+      }
+    );
+
+    console.log("Evolve Sync Successful:", saved);
+    res.status(200).json({ message: "Sync successful", data: saved });
   } catch (err) {
     console.error("Error saving evolve:", err);
     res.status(500).send("Server error");
